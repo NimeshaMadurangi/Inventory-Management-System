@@ -17,19 +17,19 @@ export default function Dashboard({ auth }) {
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        {/* Card for date */}
+                        
                         <div className="card">
                             <h3 className="text-lg font-semibold text-gray-800 mb-2">Date</h3>
                             <p className="text-gray-600">{new Date().toLocaleDateString()}</p>
                         </div>
 
-                        {/* Card for total orders */}
+                        
                         <div className="card">
                             <h3 className="text-lg font-semibold text-gray-800 mb-2">Total Orders</h3>
                             <p className="text-gray-600">{orders}</p>
                         </div>
 
-                        {/* Card for total item count */}
+                       
                         <div className="card">
                             <h3 className="text-lg font-semibold text-gray-800 mb-2">Total Item Count</h3>
                             <p className="text-gray-600">{itemCount}</p>
