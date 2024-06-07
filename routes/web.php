@@ -50,8 +50,13 @@ Route::delete('/items/{id}', [ItemController::class, 'destroy']);
 
 Route::put('/items/{id}', [ItemController::class, 'updateStatus']);
 
-Route::get('/edit-item', [ItemController::class, 'edit'])->name('edit.item');
+// Route::get('/edit-item', [ItemController::class, 'edit'])->name('edit.item');
 
-Route::put('/items/{id}', [ItemController::class, 'update']);
+// Route::get('/items/{id}/edit', [ItemController::class, 'edit'])->name('items.edit');
+
+// Route::put('/items/{id}', [ItemController::class, 'update']);
+
+Route::get('/items/{id}/edit', [ItemController::class, 'edit'])->name('items.edit');
+Route::put('/items/{id}', [ItemController::class, 'update'])->name('items.update');
 
 require __DIR__.'/auth.php';

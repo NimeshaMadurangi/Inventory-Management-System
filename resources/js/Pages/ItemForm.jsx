@@ -111,7 +111,6 @@ const ItemForm = () => {
               value={formData.name}
               onChange={handleChange}
               className="form-control"
-              required
             />
             {errors.name && <div className="text-danger">{errors.name}</div>}
           </div>
@@ -128,7 +127,6 @@ const ItemForm = () => {
                 }
               }}
               className="form-control"
-              required
             />
             {errors.price && <div className="text-danger">{errors.price}</div>}
           </div>
@@ -145,7 +143,6 @@ const ItemForm = () => {
                 }
               }}
               className="form-control"
-              required
             />
             {errors.quantity && <div className="text-danger">{errors.quantity}</div>}
           </div>
@@ -157,7 +154,6 @@ const ItemForm = () => {
               id="image"
               onChange={handleChange}
               className="form-control"
-              required
             />
             {errors.image && <div className="text-danger">{errors.image}</div>}
           </div>
@@ -170,13 +166,11 @@ const ItemForm = () => {
               value={formData.status}
               onChange={handleChange}
               className="form-control"
-              required
             />
             {errors.status && <div className="text-danger">{errors.status}</div>}
           </div>
           <button
             type="submit"
-            disabled={!formData.name || !formData.price || !formData.quantity || !formData.image || !formData.status}
             className="btn btn-primary btn-frame"
           >
             Submit

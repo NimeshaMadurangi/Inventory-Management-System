@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Inertia } from "@inertiajs/inertia";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/list.css';
 
 const ItemList = () => {
     const [items, setItems] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         fetchItems();
     }, []);
 
     const fetchItems = () => {
+        setLoading(true);
         axios.get('/items')
             .then(response => {
                 setItems(response.data);
+                setLoading(false);
             })
             .catch(error => {
                 console.error('Error fetching item data: ', error);
+                setError("Failed to fetch items. Please try again later.");
+                setLoading(false);
             });
     };
 
@@ -35,18 +42,9 @@ const ItemList = () => {
         }
     };
 
-    // const handleStatusChange = (id, status) => {
-    //     axios.put(`/items/${id}`, { status })
-    //         .then(response => {
-    //             console.log('Status change response:', response.data);
-    //             fetchItems();
-    //             alert("Status changed successfully");
-    //         })
-    //         .catch(error => {
-    //             console.error('Error changing item status: ', error);
-    //             alert("Error changing item status");
-    //         });
-    // };
+    const handleEdit = (id) => {
+        Inertia.get(`/items/${id}/edit`);
+    };
 
     const handleSearch = (event) => {
         setSearchTerm(event.target.value);
@@ -66,6 +64,8 @@ const ItemList = () => {
                 value={searchTerm}
                 onChange={handleSearch}
             />
+            {loading && <p>Loading...</p>}
+            {error && <p>{error}</p>}
             <div className="table-responsive">
                 <table className="table table-striped">
                     <thead>
@@ -91,7 +91,7 @@ const ItemList = () => {
                                         style={{ maxWidth: "50px", maxHeight: "50px" }}
                                     />
                                 </td>
-                                <td>{item.quantity === 0 ? 'Not-Available' : item.status}</td>
+                                <td>{item.quantity === 0 ? 'Not Available' : item.status}</td>
                                 <td>
                                     <button
                                         onClick={() => handleEdit(item.id)}
@@ -109,7 +109,7 @@ const ItemList = () => {
                                         onClick={() => handleStatusChange(item.id, item.status === 'available' ? 'notavailable' : 'available')}
                                         className={`btn btn-sm ${item.status === 'available' ? 'btn-warning' : 'btn-success'} ms-2`}
                                     >
-                                        {item.status === 'available' ? 'Not-available' : 'Available'}
+                                        {item.status === 'available' ? 'Not available' : 'Available'}
                                     </button> */}
                                 </td>
                             </tr>
