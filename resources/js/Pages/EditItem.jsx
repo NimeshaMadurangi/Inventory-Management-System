@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../css/form.css';
 
 const EditItem = ({ item }) => {
     const [formData, setFormData] = useState({
@@ -28,6 +27,7 @@ const EditItem = ({ item }) => {
         e.preventDefault();
 
         const data = new FormData();
+        data.append('_method', 'PUT');
         data.append('name', formData.name);
         data.append('price', formData.price);
         data.append('quantity', formData.quantity);
@@ -40,7 +40,7 @@ const EditItem = ({ item }) => {
         Inertia.post(`/items/${item.id}`, data, {
             onFinish: () => {
                 alert('Item updated successfully!');
-                Inertia.visit('/items');
+                Inertia.visit('/item-index');
             },
         });
     };

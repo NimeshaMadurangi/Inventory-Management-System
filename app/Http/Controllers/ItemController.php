@@ -63,13 +63,11 @@ class ItemController extends Controller
     public function update(Request $request, $id)
     {
         $item = Item::findOrFail($id);
-
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|integer',
             'quantity' => 'required|integer',
             'status' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         if ($request->hasFile('image')) {
@@ -77,10 +75,12 @@ class ItemController extends Controller
             $imageName = time() . '.' . $image->extension();
             $image->move(public_path('images'), $imageName);
             $validatedData['image'] = $imageName;
+        } else {
+            $validatedData['image'] = $item->image;
         }
 
         $item->update($validatedData);
 
-        return redirect()->route('index');
+        return redirect()->route('dashboard')->with('success', 'Item updated successfully');
     }
 }

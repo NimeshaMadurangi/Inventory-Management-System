@@ -6,17 +6,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -36,27 +25,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//Item Routes
-
+// Item Routes
 Route::get('/item-form', [ItemController::class, 'create'])->name('item-form');
-
 Route::get('/item-index', [ItemController::class, 'view'])->name('item-index');
-
 Route::post('/create', [ItemController::class, 'store']);
-
 Route::get('/items', [ItemController::class, 'index']);
-
 Route::delete('/items/{id}', [ItemController::class, 'destroy']);
-
-Route::put('/items/{id}', [ItemController::class, 'updateStatus']);
-
-// Route::get('/edit-item', [ItemController::class, 'edit'])->name('edit.item');
-
-// Route::get('/items/{id}/edit', [ItemController::class, 'edit'])->name('items.edit');
-
-// Route::put('/items/{id}', [ItemController::class, 'update']);
-
-Route::get('/items/{id}/edit', [ItemController::class, 'edit'])->name('items.edit');
-Route::put('/items/{id}', [ItemController::class, 'update'])->name('items.update');
+Route::put('/items/{id}', [ItemController::class, 'update']);
+Route::get('/items/{id}/edit', [ItemController::class, 'edit'])->name('edit.item');
 
 require __DIR__.'/auth.php';

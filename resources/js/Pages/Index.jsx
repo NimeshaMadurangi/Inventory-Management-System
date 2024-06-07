@@ -1,3 +1,5 @@
+// Index.jsx
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Inertia } from "@inertiajs/inertia";
@@ -105,12 +107,6 @@ const ItemList = () => {
                                     >
                                         Delete
                                     </button>
-                                    {/* <button
-                                        onClick={() => handleStatusChange(item.id, item.status === 'available' ? 'notavailable' : 'available')}
-                                        className={`btn btn-sm ${item.status === 'available' ? 'btn-warning' : 'btn-success'} ms-2`}
-                                    >
-                                        {item.status === 'available' ? 'Not available' : 'Available'}
-                                    </button> */}
                                 </td>
                             </tr>
                         ))}
