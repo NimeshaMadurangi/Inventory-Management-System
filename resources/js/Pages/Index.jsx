@@ -1,9 +1,7 @@
-// Index.jsx
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Inertia } from "@inertiajs/inertia";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import '../../css/list.css';
 
 const ItemList = () => {
@@ -83,37 +81,37 @@ const ItemList = () => {
                     <tbody>
                         {filteredItems.map(item => (
                             <tr key={item.id}>
-                                <td>{item.name}</td>
-                                <td>{item.price}</td>
-                                <td>{item.quantity}</td>
-                                <td>
-                                    <img 
-                                        src={`./images/${item.image}`}
-                                        alt={item.name}
-                                        style={{ maxWidth: "50px", maxHeight: "50px" }}
-                                    />
-                                </td>
-                                <td>{item.quantity === 0 ? 'Not Available' : item.status}</td>
-                                <td>
-                                    <button
-                                        onClick={() => handleEdit(item.id)}
-                                        className="btn btn-sm btn-success ms-2"
-                                    >
-                                        Edit
-                                    </button>
-                                    <button
-                                        onClick={() => handleDelete(item.id)}
-                                        className="btn btn-sm btn-danger ms-2"
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+                            <td>{item.name}</td>
+                            <td>{item.price}</td>
+                            <td>{item.quantity}</td>
+                            <td>
+                                <img 
+                                    src={`./images/${item.image}`}
+                                    alt={item.name}
+                                    style={{ maxWidth: "50px", maxHeight: "50px" }}
+                                />
+                            </td>
+                            <td>{item.quantity === 0 ? 'Not Available' : item.status}</td>
+                            <td>
+                                <button
+                                    onClick={() => handleEdit(item.id)}
+                                    className="btn btn-sm btn-success ms-2"
+                                >
+                                    Edit    
+                                </button>
+                                <button
+                                    onClick={() => handleDelete(item.id)}
+                                    className="btn btn-sm btn-danger ms-2"
+                                >
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
+    </div>
     );
 };
 
